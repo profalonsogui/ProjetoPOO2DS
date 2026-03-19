@@ -1,0 +1,15 @@
+# Build
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# Arquivos temporários
+*.log
+*.user
+*.suo
+
+# Sistema
+Thumbs.db
+.DS_Store
