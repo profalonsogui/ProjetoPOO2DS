@@ -6,15 +6,25 @@ class Program
 {
     static void Main()
     {
-        Pessoa p1 = new Pessoa();
-        Produto prod1 = new Produto();
+        //Pessoa p1 = new Pessoa();
+        //Produto prod1 = new Produto();
+        ProdDesconto produto1 = new ProdDesconto();
+
+        produto1.Nome = "Notebook";
+        produto1.Preco = 4800.00;
+
+        double precoComDesconto = produto1.AplicarDesconto(10);
+
+        Console.WriteLine($"Produto: {produto1.Nome}");
+        Console.WriteLine($"Preço original: {produto1.Preco}");
+        Console.WriteLine($"Preço com desconto: R$ {precoComDesconto}");
 
         //p1.Nome = "josé";
         //p1.Idade = 27;
 
-        prod1.Nome = "Notebook Acer Nitro v15";
-        prod1.Preco = 7999.99;
-
+        //prod1.Nome = "Notebook Acer Nitro v15";
+        //prod1.Preco = 7999.99;
+        /*
         Console.Write("Digite o nome: ");
         p1.Nome = Console.ReadLine()!;
 
@@ -22,9 +32,10 @@ class Program
         p1.Idade = int.Parse(Console.ReadLine()!);
 
         p1.Apresentar();
-        Console.WriteLine($"Nome produto: {prod1.Nome}");
-        Console.WriteLine($"Preço produto: {prod1.Preco}");
+        */
+        //Console.WriteLine($"Nome produto: {prod1.Nome}");
+        //Console.WriteLine($"Preço produto: {prod1.Preco}");
 
-        Console.WriteLine($"O cliente {p1.Nome} comprou o produto: {prod1.Nome} e pagou R${prod1.Preco}.");
+        //Console.WriteLine($"O cliente {p1.Nome} comprou o produto: {prod1.Nome} e pagou R${prod1.Preco}.");
     }
 }
