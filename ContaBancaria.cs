@@ -2,38 +2,27 @@ namespace SistemaBancario
 {
     public class ContaBancaria
     {
-        // Propriedades com Encapsulamento
-        public string Titular { get; set; }
-        public decimal Saldo { get; private set; } // O mundo vê, mas só a classe altera
+        public decimal Saldo { get; private set; }
+        
+        // ASSOCIAÇÃO: A conta "tem um" Titular
+        public Titular Dono { get; private set; }
 
-        // Construtor: Exige o nome do titular ao criar a conta
-        public ContaBancaria(string nome)
+        // Construtor: Recebe o objeto Titular pronto
+        public ContaBancaria(Titular cliente)
         {
-            Titular = nome;
-            Saldo = 0; // Começa com saldo zerado por segurança
+            Dono = cliente;
+            Saldo = 0;
         }
 
-        // Métodos (Comportamentos)
         public void Depositar(decimal valor)
         {
-            if (valor > 0)
-            {
-                Saldo += valor;
-                Console.WriteLine($"Depósito de R${valor} realizado com sucesso!");
-            }
+            if (valor > 0) Saldo += valor;
         }
 
-        public void Sacar(decimal valor)
+        public void ExibirResumo()
         {
-            if (valor > 0 && valor <= Saldo)
-            {
-                Saldo -= valor;
-                Console.WriteLine($"Saque de R${valor} realizado.");
-            }
-            else
-            {
-                Console.WriteLine("Saldo insuficiente ou valor inválido.");
-            }
+            // Note como acessamos o nome que está DENTRO do objeto Dono
+            Console.WriteLine($"Conta de: {Dono.Nome} | CPF: {Dono.CPF} | Saldo: R${Saldo}");
         }
     }
 }
