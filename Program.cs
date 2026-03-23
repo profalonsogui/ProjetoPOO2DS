@@ -1,41 +1,30 @@
 ﻿using System;
-using System.Text;
-
+using SistemaBancario; // Importa o namespace onde a classe foi criada
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        //Pessoa p1 = new Pessoa();
-        //Produto prod1 = new Produto();
-        ProdDesconto produto1 = new ProdDesconto();
+        Console.WriteLine("--- BEM-VINDO AO BANCO C# ---");
 
-        produto1.Nome = "Notebook";
-        produto1.Preco = 4800.00;
+        // 1. Instanciando o objeto usando o CONSTRUTOR
+        // Note que passamos "João" como argumento obrigatório
+        ContaBancaria contaDoJoao = new ContaBancaria("João Silva");
 
-        double precoComDesconto = produto1.AplicarDesconto(10);
+        // 2. Testando o Encapsulamento
+        // contaDoJoao.Saldo = 5000; // <- Se descomentar isso, o C# dará ERRO de compilação!
+        
+        // 3. Interagindo via Métodos
+        Console.WriteLine($"Titular: {contaDoJoao.Titular}");
+        Console.WriteLine($"Saldo Inicial: R${contaDoJoao.Saldo}");
 
-        Console.WriteLine($"Produto: {produto1.Nome}");
-        Console.WriteLine($"Preço original: {produto1.Preco}");
-        Console.WriteLine($"Preço com desconto: R$ {precoComDesconto}");
+        contaDoJoao.Depositar(150.50m);
+        contaDoJoao.Sacar(50.00m);
 
-        //p1.Nome = "josé";
-        //p1.Idade = 27;
+        // 4. Exibindo estado final
+        Console.WriteLine($"Saldo Atual: R${contaDoJoao.Saldo}");
 
-        //prod1.Nome = "Notebook Acer Nitro v15";
-        //prod1.Preco = 7999.99;
-        /*
-        Console.Write("Digite o nome: ");
-        p1.Nome = Console.ReadLine()!;
-
-        Console.Write("Digite a idade: ");
-        p1.Idade = int.Parse(Console.ReadLine()!);
-
-        p1.Apresentar();
-        */
-        //Console.WriteLine($"Nome produto: {prod1.Nome}");
-        //Console.WriteLine($"Preço produto: {prod1.Preco}");
-
-        //Console.WriteLine($"O cliente {p1.Nome} comprou o produto: {prod1.Nome} e pagou R${prod1.Preco}.");
+        Console.WriteLine("\nPressione qualquer tecla para sair...");
+        Console.ReadKey();
     }
 }
