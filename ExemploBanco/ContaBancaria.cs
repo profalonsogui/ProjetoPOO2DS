@@ -2,7 +2,7 @@ namespace SistemaBancario
 {
     public class ContaBancaria
     {
-        public decimal Saldo { get; private set; }
+        public decimal Saldo { get; protected set; }
         
         // ASSOCIAÇÃO: A conta "tem um" Titular
         public Titular Dono { get; private set; }

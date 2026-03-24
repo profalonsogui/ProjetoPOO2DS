@@ -1,23 +1,37 @@
-﻿using System;
-using SistemaBancario;
+﻿using SistemaBancario;
 
-class Program
+Console.WriteLine("=== SISTEMA BANCÁRIO POO ===");
+
+// Passo 1: Criar o Titular (Comum a todos)
+Console.Write("Nome do Titular: ");
+string nome = Console.ReadLine()!;
+Console.Write("CPF do Titular: ");
+string cpf = Console.ReadLine()!;
+
+Titular t1 = new Titular(nome, cpf);
+
+// Passo 2: Escolher o tipo de conta
+Console.WriteLine("\nEscolha o tipo de conta: [1] Poupança | [2] Corrente");
+string opcao = Console.ReadLine()!;
+
+if (opcao == "1")
 {
-    static void Main(string[] args)
-    {
-        // 1. Primeiro criamos o objeto "independente" (O Titular)
-        Titular pessoa = new Titular("Carlos Oliveira", "123.456.789-00");
+    ContaPoupanca cp = new ContaPoupanca(t1);
+    cp.Depositar(500); // Método que veio do pai
+    cp.RenderJuros();  // Método exclusivo da Poupanca
+    Console.WriteLine($"Saldo Poupança: R$ {cp.Saldo}");
+}
+else if (opcao == "2")
+{
+    Console.Write("Qual o valor do limite de crédito? ");
+    decimal limiteDigitado = decimal.Parse(Console.ReadLine()!);
 
-        // 2. Agora criamos a Conta e PASSAMOS o objeto 'pessoa' para dentro dela
-        // Isso é a associação de objetos!
-        ContaBancaria minhaConta = new ContaBancaria(pessoa);
-
-        minhaConta.Depositar(500);
-        
-        // 3. Exibindo os dados integrados
-        minhaConta.ExibirResumo();
-
-        Console.WriteLine("\nPressione qualquer tecla para sair...");
-        Console.ReadKey();
-    }
+    // Criando a ContaCorrente com o limite digitado
+    ContaCorrente cc = new ContaCorrente(t1, limiteDigitado);
+    cc.Depositar(1000);
+    cc.ExibirDadosCorrente(); // Método exclusivo da Corrente
+}
+else
+{
+    Console.WriteLine("Opção inválida!");
 }
