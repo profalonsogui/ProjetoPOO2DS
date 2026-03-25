@@ -1,23 +1,28 @@
-﻿using System;
-using SistemaBancario;
+﻿using ProjetoPOO.ExemploPessoa;
 
-class Program
+Console.WriteLine("--- Cadastro Escolar ---");
+Console.Write("Digite o Nome: ");
+string nomeInput = Console.ReadLine();
+
+Console.Write("Digite a Idade: ");
+int idadeInput = int.Parse(Console.ReadLine());
+
+Console.WriteLine("O que deseja cadastrar? [1] Aluno | [2] Professor");
+string escolha = Console.ReadLine();
+
+if (escolha == "1")
 {
-    static void Main(string[] args)
-    {
-        // 1. Primeiro criamos o objeto "independente" (O Titular)
-        Titular pessoa = new Titular("Carlos Oliveira", "123.456.789-00");
+    Console.Write("Digite a Matrícula: ");
+    string mat = Console.ReadLine();
 
-        // 2. Agora criamos a Conta e PASSAMOS o objeto 'pessoa' para dentro dela
-        // Isso é a associação de objetos!
-        ContaBancaria minhaConta = new ContaBancaria(pessoa);
+    Aluno a = new Aluno(nomeInput, idadeInput, mat);
+    a.ExibirAluno();
+}
+else if (escolha == "2")
+{
+    Console.Write("Digite a Disciplina: ");
+    string disc = Console.ReadLine();
 
-        minhaConta.Depositar(500);
-        
-        // 3. Exibindo os dados integrados
-        minhaConta.ExibirResumo();
-
-        Console.WriteLine("\nPressione qualquer tecla para sair...");
-        Console.ReadKey();
-    }
+    Professor p = new Professor(nomeInput, idadeInput, disc);
+    p.ExibirProfessor();
 }
