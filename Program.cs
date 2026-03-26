@@ -1,37 +1,34 @@
-﻿using SistemaBancario;
+﻿using System.Collections.Generic;
+using ExemploProduto;
 
-Console.WriteLine("=== SISTEMA BANCÁRIO POO ===");
-
-// Passo 1: Criar o Titular (Comum a todos)
-Console.Write("Nome do Titular: ");
-string nome = Console.ReadLine()!;
-Console.Write("CPF do Titular: ");
-string cpf = Console.ReadLine()!;
-
-Titular t1 = new Titular(nome, cpf);
-
-// Passo 2: Escolher o tipo de conta
-Console.WriteLine("\nEscolha o tipo de conta: [1] Poupança | [2] Corrente");
-string opcao = Console.ReadLine()!;
-
-if (opcao == "1")
+// 1. Criamos um catálogo de marcas disponíveis
+List<Marca> catalogoMarcas = new List<Marca>
 {
-    ContaPoupanca cp = new ContaPoupanca(t1);
-    cp.Depositar(500); // Método que veio do pai
-    cp.RenderJuros();  // Método exclusivo da Poupanca
-    Console.WriteLine($"Saldo Poupança: R$ {cp.Saldo}");
-}
-else if (opcao == "2")
-{
-    Console.Write("Qual o valor do limite de crédito? ");
-    decimal limiteDigitado = decimal.Parse(Console.ReadLine()!);
+    new Marca("Geral", 0.0),      // Sem desconto
+    new Marca("Samsung", 0.05),   // 5% de desconto
+    new Marca("Apple", 0.02),     // 2% de desconto
+    new Marca("Xiaomi", 0.15)     // 15% de desconto (Bom desconto!)
+};
 
-    // Criando a ContaCorrente com o limite digitado
-    ContaCorrente cc = new ContaCorrente(t1, limiteDigitado);
-    cc.Depositar(1000);
-    cc.ExibirDadosCorrente(); // Método exclusivo da Corrente
-}
-else
+// 2. Interação com o usuário
+Console.Write("Digite o nome do produto: ");
+string nomeProd = Console.ReadLine()!;
+
+Console.Write("Digite o preço base: ");
+double precoProd = double.Parse(Console.ReadLine()!);
+
+Console.WriteLine("\nEscolha a Marca pelo número:");
+for (int i = 0; i < catalogoMarcas.Count; i++)
 {
-    Console.WriteLine("Opção inválida!");
+    Console.WriteLine($"{i} - {catalogoMarcas[i].Nome}");
 }
+
+int opcao = int.Parse(Console.ReadLine()!);
+
+// 3. Criar o produto com a marca escolhida da lista
+Marca marcaEscolhida = catalogoMarcas[opcao];
+Produto novoProduto = new Produto(nomeProd, precoProd, marcaEscolhida);
+
+// 4. Resultado
+Console.Clear();
+novoProduto.ExibirCupom();

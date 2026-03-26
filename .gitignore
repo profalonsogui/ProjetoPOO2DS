@@ -4,6 +4,7 @@ obj/
 
 # VS Code
 .vscode/
+.vs/
 
 # Arquivos temporários
 *.log
