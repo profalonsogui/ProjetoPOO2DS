@@ -14,12 +14,15 @@ namespace ExemploProduto
             Porcentagem = porcentagem;
         }
 
+        //private
+        //protected
+
         public void ExibirComDesconto()
         {
             // CORREÇÃO: Usando 'PrecoBase' e 'Nome' que existem na classe Produto
             double valorFinal = PrecoBase - (PrecoBase * Porcentagem / 100);
 
-            Console.WriteLine($"[PROMOÇÃO EXTRA] {Nome}");
+            Console.WriteLine("[PROMOÇÃO EXTRA] {Nome}");
             Console.WriteLine($"De: R${PrecoBase:F2} por apenas R${valorFinal:F2}!");
             Console.WriteLine($"Desconto aplicado: {Porcentagem}%");
             Console.WriteLine("--------------------\n");
